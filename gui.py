@@ -1,14 +1,18 @@
 from all_white import AllWhiteCalc
-import tkinter
+import tkinter, time
+from threading import Thread
 
-class Gui:
+class Gui(Thread):
     BOARD_SIZE = 500
     DIMENSION = 10
     GRID_SIZE = BOARD_SIZE // DIMENSION
 
     def __init__(self, parent):
         # Setup GUI
-        self.e = tkinter.Entry(parent)
+        self.e = parent
+        self.grids = dict()
+        Thread.__init__(self)
+        self.moves = []
         parent.title("All White! Solver")
 
         top_frame = tkinter.Frame(parent)
@@ -56,37 +60,23 @@ class Gui:
         self.board_canvas.bind("<Button-1>", self.toggle_grid)
         self.board_canvas.pack()
 
-
     def start_simulation(self, event):
         calculator = AllWhiteCalc()
-        try:
-            moves = calculator.calc_moves(self.board)
-            print("Moves found:", moves)
-        except ValueError:
-            print("No solution found!")
-        # for move in moves:
+        self.moves = calculator.calc_moves(self.board)
+        print("Moves found:", self.moves)
+        thread = Thread(target=self.run)
+        thread.start()
 
-
-    @classmethod
-    def yield_moves(cls, moves):
-        for move in moves:
-            yield move
+    def run(self):
+        if self.moves:
+            time.sleep(1)
+            self.mark_grid(self.moves.pop(0))
+            self.run()
 
     def mark_grid(self, coordinate):
-        column = coordinate[0]
-        row = coordinate[1]
-        grid_start = (column * Gui.GRID_SIZE, row * Gui.GRID_SIZE)
-        grid_end = (grid_start[0] + Gui.GRID_SIZE,
-                    grid_start[1] + Gui.GRID_SIZE)
-
         color = "green"
-
-        self.board_canvas.create_rectangle(grid_start[0],
-                                           grid_start[1],
-                                           grid_end[0],
-                                           grid_end[1],
-                                           fill=color,
-                                           tags="mark")
+        self.board_canvas.itemconfig(self.grids[coordinate], fill=color)
+        self.board_canvas.update()
 
     def clear_marks(self):
         self.board_canvas.find_withtag("mark")
@@ -95,11 +85,9 @@ class Gui:
         column = int(event.x * (Gui.DIMENSION/Gui.BOARD_SIZE))
         row = int(event.y * (Gui.DIMENSION/Gui.BOARD_SIZE))
         coordinate = (column, row)
-        if coordinate in self.board:
-            self.board.remove(coordinate)
+        if coordinate in self.grids:
             self.clear_grid(coordinate)
         else:
-            self.board.append(coordinate)
             self.fill_grid(coordinate)
 
     def fill_grid(self, coordinate):
@@ -110,18 +98,20 @@ class Gui:
                     grid_start[1] + Gui.GRID_SIZE)
 
         color = "red"
-
-        self.board_canvas.create_rectangle(grid_start[0],
-                                           grid_start[1],
-                                           grid_end[0],
-                                           grid_end[1],
-                                           fill=color,
-                                           tags=".".join(str(x)
-                                                         for x in coordinate))
+        self.board.append(coordinate)
+        self.grids[coordinate] = (self.board_canvas.create_rectangle(
+                                                             grid_start[0],
+                                                             grid_start[1],
+                                                             grid_end[0],
+                                                             grid_end[1],
+                                                             fill=color))
 
     def clear_grid(self, coordinate):
-        self.board_canvas.delete(".".join(str(x)
-                                          for x in coordinate))
+        if coordinate in self.board:
+            self.board.remove(coordinate)
+        self.board_canvas.delete(self.grids[coordinate])
+        if coordinate in self.grids:
+            del self.grids[coordinate]
 
 def main():
     root = tkinter.Tk()
