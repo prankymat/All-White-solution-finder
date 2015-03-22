@@ -1,3 +1,5 @@
+from operator import itemgetter
+
 DIRECTIONS = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 
 
@@ -22,14 +24,21 @@ class AllWhiteCalc:
     def game_ended(self):
         return len(self.marked) == len(self.board)
 
-    def r(self, c):
+    def r(self, c, count=0):
+        count += 1
+        if count >= 100:
+            raise ValueError("Cannot find solution!")
         neighbours = self.find_neighbours(c)
-        if len(neighbours) == 2 and c not in self.marked:
+        if len(neighbours) % 2 == 0 and c not in self.marked:
             self.marked.append(c)
         for n in neighbours:
-            self.r(n)
+            self.r(n, count)
+
+    def sort_board(self):
+        return sorted(self.board, key=itemgetter(0, 1))
 
     def calc_moves(self):
+        self.board = self.sort_board()
         self.r(self.board[0])
         self.marked.extend(list(set(self.board).difference(self.marked)))
         return self.marked
