@@ -58,9 +58,12 @@ class Gui:
 
 
     def start_simulation(self, event):
-        calculator = AllWhiteCalc(self.board)
-        moves = calculator.calc_moves()
-        print("Moves found:", moves)
+        calculator = AllWhiteCalc()
+        try:
+            moves = calculator.calc_moves(self.board)
+            print("Moves found:", moves)
+        except ValueError:
+            print("No solution found!")
         # for move in moves:
 
 

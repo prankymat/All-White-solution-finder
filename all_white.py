@@ -1,12 +1,13 @@
 from operator import itemgetter
+import string
 
 DIRECTIONS = [(0, -1), (-1, 0), (0, 1), (1, 0)]
 
-
 class AllWhiteCalc:
-    def __init__(self, board):
+    def __init__(self):
         self.marked = []
-        self.board = board
+        self.board = []
+        self.symbol = dict()
 
     def find_neighbours(self, coordinate):
         neighbours = []
@@ -24,21 +25,34 @@ class AllWhiteCalc:
     def game_ended(self):
         return len(self.marked) == len(self.board)
 
-    def r(self, c, count=0):
-        count += 1
-        if count >= 100:
-            raise ValueError("Cannot find solution!")
-        neighbours = self.find_neighbours(c)
-        if len(neighbours) % 2 == 0 and c not in self.marked:
-            self.marked.append(c)
-        for n in neighbours:
-            self.r(n, count)
+    def mark_coordinate(self, coordinate):
+        if coordinate not in self.marked:
+            self.marked.append(coordinate)
 
-    def sort_board(self):
-        return sorted(self.board, key=itemgetter(0, 1))
+    @classmethod
+    def sort_board(cls, board):
+        return sorted(board, key=itemgetter(1, 0))
 
-    def calc_moves(self):
-        self.board = self.sort_board()
-        self.r(self.board[0])
-        self.marked.extend(list(set(self.board).difference(self.marked)))
+    def calc_moves(self, board):
+        self.board = self.sort_board(board)
+
+        # count = 0
+        # for c in self.board:
+        #     self.symbol[c] = string.ascii_letters[count]
+        #     count += 1
+
+        while not self.game_ended():
+            for grid in self.board:
+                neighbours = self.find_neighbours(grid)
+                if len(neighbours) == 2:
+                    self.mark_coordinate(grid)
+                elif len(neighbours) == 1:
+                    if len(self.find_neighbours(neighbours[0])) == 1:
+                        self.mark_coordinate(neighbours[0])
+                elif len(neighbours) == 0:
+                    self.mark_coordinate(grid)
+                elif len(neighbours) == 4:
+                    self.mark_coordinate(grid)
+
+        # print("marked:", [self.symbol[x] for x in self.marked])
         return self.marked
