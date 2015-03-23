@@ -6,6 +6,9 @@ Python version >= 3.4
 
 Install python 3 from offical [Python's site](https://www.python.org/downloads/) or follow tutorials online.
 
+## Installation
+Download the original scripts from this repo, use your favorite Python IDE or shell to run the script.
+
 ## Usage
 ``` python3 gui.py ```
 
