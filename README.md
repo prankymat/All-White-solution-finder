@@ -23,4 +23,5 @@ Android (by Fung Siu Yung): https://play.google.com/store/apps/details?id=com.Ne
 ##### Unable to reply simulation
 After playing the simulation, it will be impossible to reply the simulation without breaking the logic.
 
+##### Other issues
 Found an issue? Head to this project's [issue page](../../issues) and report it!
