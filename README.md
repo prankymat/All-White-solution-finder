@@ -6,6 +6,7 @@ Python version >= 3.4
 
 ## Usage
 ``` python3 gui.py ```
+
 Install python 3 from offical [Python's site](https://www.python.org/downloads/) or follow tutorials online.
 
 ![Screen shot of the GUI](https://raw.githubusercontent.com/prankymat/all-white-calc/raw/screenshot.png)
