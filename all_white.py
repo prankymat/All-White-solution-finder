@@ -31,11 +31,12 @@ class AllWhiteCalc:
 
     @classmethod
     def sort_board(cls, board):
-        return sorted(board, key=itemgetter(1, 0))
+        return sorted(board, key=itemgetter(1, 0)) or []
 
     def calc_moves(self, board):
-        self.board = self.sort_board(board)
 
+        self.board = self.sort_board(board)
+        self.marked = []
         # count = 0
         # for c in self.board:
         #     self.symbol[c] = string.ascii_letters[count]
