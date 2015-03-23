@@ -4,10 +4,10 @@ A move calculator for mobile app "All White!" written by chun yin Tsang and Fung
 ## Prerequisites
 Python version >= 3.4
 
+Install python 3 from offical [Python's site](https://www.python.org/downloads/) or follow tutorials online.
+
 ## Usage
 ``` python3 gui.py ```
-
-Install python 3 from offical [Python's site](https://www.python.org/downloads/) or follow tutorials online.
 
 ![Screen shot of the GUI](https://raw.githubusercontent.com/prankymat/all-white-calc/raw/screenshot.png)
 
