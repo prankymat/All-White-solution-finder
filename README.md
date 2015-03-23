@@ -21,6 +21,7 @@ Use mouse to click and draw the puzzle on screen then click ```Start simulation`
 This project is intended to solve the puzzles in the app, checkout the original app before heading for this solver. Special thanks to these game developers making this app happen!
 
 iOS (by chun yin Tsang): https://itunes.apple.com/us/app/all-white!/id959267278?mt=8
+
 Android (by Fung Siu Yung): https://play.google.com/store/apps/details?id=com.Neone.allwhitean&hl=en
 
 ## Issues
