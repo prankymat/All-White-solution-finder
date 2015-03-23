@@ -17,3 +17,10 @@ This project is intended to solve the puzzles in the app, checkout the original 
 
 iOS (by chun yin Tsang): https://itunes.apple.com/us/app/all-white!/id959267278?mt=8
 Android (by Fung Siu Yung): https://play.google.com/store/apps/details?id=com.Neone.allwhitean&hl=en
+
+## Issues
+#### Known issues
+##### Unable to reply simulation
+After playing the simulation, it will be impossible to reply the simulation without breaking the logic.
+
+Found an issue? Head to this project's [issue page](../../issues) and report it!
