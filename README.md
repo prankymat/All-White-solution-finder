@@ -1,5 +1,6 @@
 # all-white-calc
-A move calculator for mobile app "All White!" written by chun yin Tsang and Fung Siu Yung
+A move calculator for mobile app "All White!" written by chun yin Tsang and Fung Siu Yung  
+This is a Python GUI version written with Tkinter, there will be a version for web coming soon! [Check out this issue] for updated details
 
 ## Prerequisites
 Python version >= 3.4
@@ -30,3 +31,5 @@ After playing the simulation, it will be impossible to reply the simulation with
 
 ##### Other issues
 Found an issue? Head to this project's [issue page](../../issues) and report it!
+
+[Check out this issue]: (../../issues/5)
