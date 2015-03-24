@@ -1,0 +1,13 @@
+{
+  "name": "all-white-solver-web",
+  "version": "0.0.1",
+  "description": "All White! Solution solver",
+  "author": "prankymat",
+  "dependencies": {
+    "underscore": "^1.8.2"
+  },
+  "main": "logic",
+  "engines": {
+    "node": ">= 0.4.1"
+  }
+}
