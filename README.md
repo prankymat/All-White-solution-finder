@@ -1,4 +1,4 @@
-# all-white-calc  [![Build Status](https://travis-ci.org/prankymat/all-white-calc.svg?branch=master)](https://travis-ci.org/prankymat/all-white-calc)
+# All White solution finder  [![Build Status](https://travis-ci.org/prankymat/all-white-calc.svg?branch=master)](https://travis-ci.org/prankymat/all-white-calc)
 A solution calculator for mobile app "All White!" written by chun yin Tsang and Fung Siu Yung
 
 This is a Python GUI version written with Tkinter, will only work for devices that has Python installed. There will be a version for web coming soon! [Check out this issue] for updated details and look forward to it!
